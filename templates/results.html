@@ -8,16 +8,18 @@
     <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-0.9.3.min.css" type="text/css" />
     <script typee="text/javascript" src="http://cdn.pydata.org/bokeh/release/bokeh-0.9.3.min.js"></script>
 
-    {{ plot_resources|indent(4)|safe }}
+    
 
-    {{ plot_script|indent(4)|safe }}
+    {{plot_script|indent(4)|safe }}
 
   </head>
   <body>
-    <h1>Generated graph for {{userbw}} <br>
-        <a href="/index">Back</a>
-    </h1>
-
-    {{ plot_div|indent(4)|safe }}
+      <center>
+      <h1>Generated graph for you {{userbw}} </h1>
+      
+      {{plot_div|indent(4)|safe }}
+      
+      <h1><a href="/index">Back</a></h1>
+      </center>
   </body>
 </html>
