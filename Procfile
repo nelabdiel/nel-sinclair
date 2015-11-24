@@ -1,1 +1,1 @@
-web: python nel-sinclair.ipynb
+web: python nel-sinclair.py
