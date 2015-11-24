@@ -1,1 +1,1 @@
-web: gunicorn nel-sinclair:app --log-file=-
+web: python nel-sinclair.iynb
