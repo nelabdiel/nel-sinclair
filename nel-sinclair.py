@@ -1,21 +1,13 @@
 #In this notebook I'm using the current world records as a base for our formula.
 from flask import Flask, render_template, request, redirect
-import requests
-from bs4 import BeautifulSoup
-#import matplotlib
-#import scipy as sp
-#%matplotlib inline
-import math
-#import matplotlib.pyplot as plt
-import numpy as np
-#from pylab import *
-#from scipy.optimize import curve_fit
 from bokeh.embed import components
 from bokeh.plotting import figure
 from bokeh.resources import INLINE
-#from bokeh.templates import RESOURCES
 from bokeh.util.string import encode_utf8
-
+import requests
+from bs4 import BeautifulSoup
+import math
+import numpy as np
 
 app = Flask(__name__)
 
