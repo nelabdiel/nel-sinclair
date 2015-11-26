@@ -1,4 +1,5 @@
 #In this notebook I'm using the current world records as a base for our formula.
+import os
 from flask import Flask, render_template, request, redirect
 from bokeh.embed import components
 from bokeh.plotting import figure
@@ -126,6 +127,6 @@ def graph():
     )
     return encode_utf8(html)        
             
-if __name__ == '__main__':
-    #app.run('0.0.0.0')
-    app.run(port=33507)            
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)          
