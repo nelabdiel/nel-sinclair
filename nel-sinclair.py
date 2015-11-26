@@ -101,8 +101,8 @@ def graph():
     
     p = figure(plot_width=500, plot_height=500)
     p.circle(bw, total, size=10, legend= "World Record")
-    p.circle(userbw, usertotal, size=10, color = "green", legend="You")
     p.circle(webbw, webtotal, size=5, color = "red", legend="Others")
+    p.circle(userbw, usertotal, size=10, color = "green", legend="You")
     p.line(x, approx, line_color="#D95B43", line_width=3, alpha=0.7, legend="Nel-Sinclair")
     
     p.title = "Body Weight vs Total"
