@@ -1,23 +1,28 @@
 #In this notebook I'm using the current world records as a base for our formula.
-import os
 from flask import Flask, render_template, request, redirect
-from bokeh.embed import components
-from bokeh.plotting import figure
-from bokeh.util.string import encode_utf8
 import requests
 from bs4 import BeautifulSoup
 import math
 import numpy as np
+from bokeh.embed import components
+from bokeh.plotting import figure
+from bokeh.util.string import encode_utf8
+
 
 app = Flask(__name__)
 
 app.vars = {}
 
 
+
 #Index page
 @app.route('/')
 def main():
     return redirect('/index')
+
+#@app.route('/landing')
+#def landing_page():
+    #return render_template('landing.html')
 
 #Error page
 @app.route('/error-page')
@@ -76,8 +81,14 @@ def graph():
     b = 41.357074003999998
     c = 0.0060825625000000003
     d = 512.45085465119996
+    
+    def approx(x): 
+        return a*np.log(c*(x-b))+d
+    
+    NS = round(approx(userbw)-usertotal, 2)
+    
+    
     x = np.linspace(50, 180, 1000)
-    approx= a*np.log(c*(x-b))+d
     
     #This years top
     r = requests.get("http://www.iwf.net/results/ranking-list/?ranking_year=2015&ranking_agegroup=Senior&ranking_gender=M&ranking_category=all&ranking_lifter=all&x=18&y=10")
@@ -103,12 +114,13 @@ def graph():
     p.circle(bw, total, size=10, legend= "World Record")
     p.circle(webbw, webtotal, size=5, color = "red", legend="Others")
     p.circle(userbw, usertotal, size=10, color = "green", legend="You")
-    p.line(x, approx, line_color="#D95B43", line_width=3, alpha=0.7, legend="Nel-Sinclair")
+    p.line(x, approx(x), line_color="#D95B43", line_width=3, alpha=0.7, legend="Nel-Sinclair")
     
     p.title = "Body Weight vs Total"
+
     p.xaxis.axis_label="Body Weight in Kilos"
     p.yaxis.axis_label="Total in Kilos"
-    p.legend.orientation = "top_left"
+    p.legend.orientation = "bottom_right"
     
     
     
@@ -118,10 +130,10 @@ def graph():
     script, div = components(p)
     html = render_template(
         'results.html',
-        ts=ts,
+        NS=NS, ts=ts,
         plot_script=script, plot_div=div #, plot_resources=plot_resources
     )
-    return encode_utf8(html)        
+    return encode_utf8(html)         
             
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))

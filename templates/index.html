@@ -10,21 +10,36 @@
 	</head>
 
     <body>
+        
+        <center>
+        <h1><font color="white">The Nel-Sinclair Coefficient</font></h1>
+            
+            
+        <p><font color="white"> The Sinclair total has been the standard for comparing two lifters and determined who was the best for more than 25 years. It does so by projecting how much would a lifter total if he or she were to move up to the heaviest weight class. To do this the Sinclair Formula uses the body and total of the current world record holder in the 105+ weight class.</font></p>
+            
+            
+        <p><font color="white"> We are now introducing the Nel-Sinclair Algorithm, which finds the best logarithmic curve that best describes the current eight world records. This simplifies the comparison among lifters by simply reducing it to a question of who is closest to the Nel-Sinclair Curve. Sinclair knew the relation between body and total followed a logarithmic curve, so the Nel-Sinclair formula uses that principle, but instead of using one record holder as a reference we use all eight. The Nel-Sinclair Coefficient is then a measure of how many kilos away you are from being the best in the world.</font></p>
+                
+                <p><font color="white">We've developed a web app that allows you to see world records and the Nel Sinclair curve, as well as where would your numbers place you against the top thousand totals recorded in meets throughout the current year. So enter your numbers and see where you stand for yourself.</font></p>
+        </center>
+    
+        
 		<div class=page>
             
             <center>
-  			<h1>Let's see how awesome you truly are.</h1>
+            
+  			<h1>Enter your numbers to find your Nel-Sinclair Coefficient.</h1>
   			<div class=metanav>
 
-    			<h4>Please enter your body weight in kilos.</h4>
+    			<h4>Enter your body weight in kilos.</h4>
 
     			<form id='input' method='post' action='index'>	
 	  			<p>
 					<input type='text' name='userbw' /> kg.
 	  			</p>
-                <h4>Please enter your total in kilos.</h4>
+                <h4>Enter your total in kilos.</h4>
 
-    			<form id='input' method='post' action='index'>	
+    			
 	  			<p>
 				<input type='text' name='usertotal' />kg.
 	  			</p>    
@@ -34,9 +49,25 @@
 	  			<p>
 					<input type="checkbox" name='features' value='MaleSenior'>Male Senior<br>
 					<input type="checkbox" name='features' value='FemaleSenior'>Female Senior<br>
+                    <input type="checkbox" name='features' value='MaleJunior'>Male Junior<br>
+					<input type="checkbox" name='features' value='FemaleJunior'>Female Junior<br>
+                    <input type="checkbox" name='features' value='MaleYouth'>Male Youth<br>
+					<input type="checkbox" name='features' value='FemaleYouth'>Female Youth<br>
 	    			<input type="submit" value="Submit">
 	  			</p>
 				</form>
-                    </center>
+                   
+                    
   			</div>
+            </center>    
 		</div>
+        <center>
+        <p><font color="white">Here's an example of how the web app looks like:</font></p>
+        
+        <img src="../static/exgraph.jpg" width="300" height="300"/> 
+        <br>
+        <br>    
+        <br>    
+        </center>
+	</body>
+</html>            
