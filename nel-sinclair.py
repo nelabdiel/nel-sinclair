@@ -22,7 +22,7 @@ app.vars['color'] = {
 def main():
     return redirect('/index')
 
-Error page
+#Error page
 @app.route('/error-page')
 def error_page():
     return render_template('error.html')
