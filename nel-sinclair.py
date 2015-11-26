@@ -1,4 +1,5 @@
 #In this notebook I'm using the current world records as a base for our formula.
+import os
 from flask import Flask, render_template, request, redirect
 import requests
 from bs4 import BeautifulSoup
