@@ -4,7 +4,7 @@ from bokeh.embed import components
 from bokeh.plotting import figure
 from bokeh.util.string import encode_utf8
 import requests
-from bs4 import BeautifulSoup
+#from bs4 import BeautifulSoup
 import math
 import numpy as np
 
@@ -22,10 +22,10 @@ app.vars['color'] = {
 def main():
     return redirect('/index')
 
-#Error page
-#@app.route('/error-page')
-#def error_page():
-    #return render_template('error.html')
+Error page
+@app.route('/error-page')
+def error_page():
+    return render_template('error.html')
 
 #Collecting from index
 @app.route('/index', methods=['GET', 'POST'])
@@ -63,16 +63,16 @@ def graph():
     usertotal = float(app.vars['usertotal'])
     
     #your sinclair
-    m = 0.794358141
-    n = 174.393
+    #m = 0.794358141
+    #n = 174.393
     
     ts = 0
-    if userbw > n:
-        ts = usertotal
+    #if userbw > n:
+        #ts = usertotal
     
-    else:
-        s = math.log(userbw/n, 10)
-        ts = round(usertotal*(10**(m*(s**2))), 2)
+    #else:
+        #s = math.log(userbw/n, 10)
+        #ts = round(usertotal*(10**(m*(s**2))), 2)
     
     #Nel-Sinclair Curve
     a = 85.477722914300003
@@ -83,29 +83,29 @@ def graph():
     approx= a*np.log(c*(x-b))+d
     
     #This years top
-    r = requests.get("http://www.iwf.net/results/ranking-list/?ranking_year=2015&ranking_agegroup=Senior&ranking_gender=M&ranking_category=all&ranking_lifter=all&x=18&y=10")
-    r.content
-    soup = BeautifulSoup(r.content)
-    rows = soup.find_all("tr")
-    webbw = []
-    for row in rows:
-        cells = row.find_all('td')
-        for i, cell in enumerate(cells):
-            if i == 4:
-                webbw.append(cell.text.strip())
+    #r = requests.get("http://www.iwf.net/results/ranking-list/?ranking_year=2015&ranking_agegroup=Senior&ranking_gender=M&ranking_category=all&ranking_lifter=all&x=18&y=10")
+    #r.content
+    #soup = BeautifulSoup(r.content)
+    #rows = soup.find_all("tr")
+    #webbw = []
+    #for row in rows:
+        #cells = row.find_all('td')
+        #for i, cell in enumerate(cells):
+            #if i == 4:
+                #webbw.append(cell.text.strip())
             
-    webtotal = []
-    for row in rows:
-        cells = row.find_all('td')
-        for i, cell in enumerate(cells):
-            if i == 7:
-                webtotal.append(cell.text.strip())        
+    #webtotal = []
+    #for row in rows:
+        #cells = row.find_all('td')
+        #for i, cell in enumerate(cells):
+            #if i == 7:
+                #webtotal.append(cell.text.strip())        
     
     
     p = figure(plot_width=500, plot_height=500)
     p.circle(bw, total, size=10, legend= "World Record")
     p.circle(userbw, usertotal, size=10, color = "green", legend="You")
-    p.circle(webbw, webtotal, size=5, color = "red", legend="Others")
+    #p.circle(webbw, webtotal, size=5, color = "red", legend="Others")
     p.line(x, approx, line_color="#D95B43", line_width=3, alpha=0.7, legend="Nel-Sinclair")
     
     p.title = "Body Weight vs Total"
